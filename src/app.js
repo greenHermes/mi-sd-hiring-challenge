@@ -21,7 +21,6 @@ const apiCall = () => {
     })
 }
 
-
 const makeHeader = (forecast, i) => {
   const text = i === day % 7 ? 'Today:' : `${weekdays[i]}:`
   return `<h4> ${text} </h4>`
@@ -59,20 +58,16 @@ const makeTemperature = () => {
 
 
 const displayData = (arr) => {
-  let j=0
-  while (j <= 1){
-    arr.forEach((item, i) => {
-      const titleBlock = makeHeader(item, j)
-      const icon = makeImage(item);
-      const description = makeDescription(item);
-      const temp = makeTemperature(item);
+  for (var i=day % 7; i < i+3; i++){
+    const titleBlock = makeHeader(arr[i], i)
+    const icon = makeImage(arr[i]);
+    const description = makeDescription(arr[i]);
+    const temp = makeTemperature(arr[i]);
 
-      var codeBlock = '<div>' + titleBlock + icon + temp + description + '</div>';
-      
-      document.getElementById(`${i}`).innerHTML = codeBlock;
-      j++
-    })
+    var codeBlock = '<div>' + titleBlock + icon + temp + description + '</div>';
+    document.getElementById(`${i}`).innerHTML = codeBlock;
   }
+  i++
 }
 
 
@@ -81,7 +76,8 @@ apiCall();
 const getWeather = (long, lat) => {
   return axios.get(`https://se-weather-api.herokuapp.com/api/v1/forecast?latitude=${lat}&longitude=${long}&date=${date}`)
   .then(res => {
-    displayData(res.data.daily.data)  
+    let forecasts = res.data.daily.data
+    displayData(forecasts)  
 })
 }
 
