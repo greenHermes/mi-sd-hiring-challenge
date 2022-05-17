@@ -45,14 +45,15 @@ const makeImage = (forecast) => {
   }
 }
 
-const makeDescription = () => {
-  
+const makeDescription = (forecast) => {
+  return `<p>${forecast.summary}</p>`
 }
 
 
 
-const makeTemperature = () => {
+const makeTemperature = (forecast) => {
 
+return `<span>${forecast.temperatureHigh}\u00b0F / ${forecast.temperatureLow}\u00b0F</span>`
 }
 
 
