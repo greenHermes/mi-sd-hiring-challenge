@@ -67,7 +67,7 @@ const displayData = (arr) => {
       const description = makeDescription(item);
       const temp = makeTemperature(item);
 
-      var codeBlock = '<div>' + titleBlock + icon + temp + description   + '</div>';
+      var codeBlock = '<div>' + titleBlock + icon + temp + description + '</div>';
       
       document.getElementById(`${i}`).innerHTML = codeBlock;
       j++
